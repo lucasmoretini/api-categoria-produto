@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 const Product = mongoose.model("Category-product");
 
-exports.getProduct = async () => {
+exports.get = async () => {
   const results = await Product.find({}, "title description _id active");
   return results;
 };
 
-exports.getProductById = async (id) => {
+exports.getById = async (id) => {
   const results = await Product.findOne({_id: id}, "title description _id active");
   return results;
 };
 
-exports.createProduct = async (data) => {
+exports.post = async (data) => {
   let produto = Product(data);
   await produto.save();
 }

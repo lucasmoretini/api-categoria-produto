@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const repository = require("../repositories/category-product-repository");
 
 exports.get = async (req, res, next) => {
-  const data = await repository.getProduct();
+  const data = await repository.get();
   res.status(200).send(data);
 };
 
 exports.getById = async (req, res, next) => {
   const id = req.params.id;
-  const data = await repository.getProductById(id);
+  const data = await repository.getById(id);
 
   if(data === null){
     res.status(400).send("Não foi possível obter o produto");
@@ -20,7 +20,7 @@ exports.getById = async (req, res, next) => {
 
 exports.post = async(req, res, next) => {
   try{
-    await repository.createProduct(req.body);
+    await repository.post(req.body);
     res.status(201).send({message: "Criado com successo"});
   }catch(erro){
     console.log(erro);
